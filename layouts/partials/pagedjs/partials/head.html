@@ -1,0 +1,9 @@
+{{ $sass := "sass/osuny-plugin-pagedjs.sass" }}
+{{ $cssOpts := (dict
+    "targetPath" "assets/css/osuny-plugin-pagedjs.css"
+    "enableSourceMap" true
+  )}}
+{{ $styles := resources.Get $sass | toCSS $cssOpts }}
+<link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
+<link rel="stylesheet" href="/assets/interface.css">
+<script src="/assets/paged.polyfill.min.js"></script>
