@@ -1,0 +1,15 @@
+outputFormats:
+  pagedjs:
+    baseName: pagedjs
+    isHTML: true
+    mediaType: text/html
+    permalinkable: true
+    rel: pagedjs
+outputs:
+  page:
+  - html
+  - pagedjs
+  section:
+  - html
+  - rss
+  - pagedjs
