@@ -1,7 +1,7 @@
 {{ range .data.testimonials }}
   <figure class="block-testimonials__testimonial">
     <blockquote>
-      {{- partial "PrepareHTML" .text -}}
+      {{- safeHTML .text -}}
     </blockquote>
     {{ if or .photo .author .job -}}
       <figcaption>
@@ -14,10 +14,10 @@
         {{ if or .author .job -}}
           <p>
             {{- with .author -}}
-              <span class="signature">{{ partial "PrepareHTML" . }}</span>
+              <span class="signature">{{ safeHTML . }}</span>
             {{- end }}
             {{- with .job -}}
-              <span class="meta">{{- partial "PrepareHTML" . }}</span>
+              <span class="meta">{{- safeHTML . }}</span>
             {{- end }}
           </p>
         {{- end }}

@@ -1,10 +1,10 @@
 {{ with .data.text }}
   <div class="rich-text">
-    {{ partial "PrepareHTML" . }}
+    {{ safeHTML . }}
   </div>
 {{ end }}
 {{ with .data.notes }}
   <div class="notes">
-    {{ partial "PrepareHTML" . }}
+    {{ safeHTML . }}
   </div>
 {{ end }}

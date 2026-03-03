@@ -4,10 +4,10 @@
       {{ $person := site.GetPage .path }}
       <article class="person" >
         <div class="texts">
-          <h2>{{ partial "PrepareHTML" $person.Title }}</h2>
+          <h2>{{ safeHTML $person.Title }}</h2>
           {{ with $person.Params.summary }}
             <div class="description">
-              {{ partial "PrepareHTML" . }}
+              {{ safeHTML . }}
             </div>
           {{ end }}
         </div>
