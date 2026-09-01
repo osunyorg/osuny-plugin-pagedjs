@@ -5,7 +5,7 @@
 
       {{- range .data.files }}
         {{ if ne .id "" }}
-          {{ partial "blocks/files/file.html" (dict
+          {{ partial "pagedjs/partials/blocks/files/file.html" (dict
             "id" .id
             "title" .title
             "image" .image
@@ -16,10 +16,10 @@
       {{/* New version */}}
       {{ $files := partial "helpers/objects/GetFromPathSlice" .data.files }}
       {{ range $files }}
-        {{ partial "blocks/files/file.html" (dict
+        {{ partial "pagedjs/partials/blocks/files/file.html" (dict
           "id" .Params.original_blob.id
           "title" .Title
-          "image" .image
+          "image" .Params.image
         ) }}
       {{ end }}
     {{ end }}
