@@ -5,45 +5,22 @@
 
       {{- range .data.files }}
         {{ if ne .id "" }}
-          {{ if partial "GetMedia" .id }}
-            <li {{- if .image }} class="with-image" {{- end }}>
-              <figure>
-                {{ partial "commons/files/download-link.html" (dict 
-                  "id" .id
-                  "title" .title
-                  "with_caption" true
-                ) }}
-              </figure>
-              {{ with .image }}
-                {{ partial "commons/image.html" (dict
-                  "image"    .
-                  "sizes"    site.Params.image_sizes.blocks.call_to_action
-                ) }}
-              {{ end }}
-              {{ with partial "GetMedia" .id }}
-                {{ partial "pagedjs/partials/qr.html" (dict "text" .download_url "class" "block-files__qr") }}
-              {{ end }}
-            </li>
-          {{ end }}
+          {{ partial "blocks/files/file.html" (dict
+            "id" .id
+            "title" .title
+            "image" .image
+          ) }}
         {{ end }}
       {{ end }}
     {{ else }}
       {{/* New version */}}
       {{ $files := partial "helpers/objects/GetFromPathSlice" .data.files }}
       {{ range $files }}
-        {{ $media := partial "GetMedia" .Params.original_blob.id }}
-        {{ if $media }}
-          <li>
-            <figure>
-              {{ partial "commons/files/download-link.html" (dict
-                "id" .Params.original_blob.id
-                "title" .Title
-                "with_caption" true
-              ) }}
-            </figure>
-            {{ partial "pagedjs/partials/qr.html" (dict "text" $media.download_url "class" "block-files__qr") }}
-          </li>
-        {{ end }}
+        {{ partial "blocks/files/file.html" (dict
+          "id" .Params.original_blob.id
+          "title" .Title
+          "image" .image
+        ) }}
       {{ end }}
     {{ end }}
   </ul>
